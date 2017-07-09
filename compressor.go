@@ -16,10 +16,10 @@ func (p *Parameter) Apply(input []float64) []float64 {
 	output := make([]float64, length)
 
 	for i := 0; i < length; i++ {
-		if input[i] >= p.Threshold {
+		if input[i] > p.Threshold {
 			output[i] = p.Threshold + (input[i]-p.Threshold)*p.Ratio
-		} else if input[i] <= -p.Threshold {
-			output[i] = -p.Threshold - (input[i]+p.Threshold)*p.Ratio
+		} else if input[i] < -p.Threshold {
+			output[i] = -1.0*p.Threshold + (input[i]+p.Threshold)*p.Ratio
 		} else {
 			output[i] = input[i]
 		}
